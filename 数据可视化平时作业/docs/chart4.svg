@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="592" viewBox="0 0 830 592" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<rect width="830" height="592" fill="#1A1E43"/>
+<text x="72" y="60" fill="#fff" font-size="33" font-weight="700" dominant-baseline="middle">2022年化妆品销售情况</text>
+<rect x="102" y="120" width="100" height="36" fill="#0070C0"/>
+<rect x="112" y="130.0" width="16" height="16" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M115.4,138.2 L118.6,142.0 L124.8,133.4" fill="none" stroke="#000" stroke-width="2.6"/>
+<text x="138" y="139.0" fill="#000" font-size="15" dominant-baseline="middle">销售额</text>
+<rect x="220" y="120" width="100" height="36" fill="#E74E69"/>
+<rect x="230" y="130.0" width="16" height="16" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="256" y="139.0" fill="#000" font-size="15" dominant-baseline="middle">利润额</text>
+<rect x="356" y="120" width="100" height="36" fill="#FFC000"/>
+<rect x="366" y="130.0" width="16" height="16" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<path d="M369.4,138.2 L372.6,142.0 L378.8,133.4" fill="none" stroke="#000" stroke-width="2.6"/>
+<text x="392" y="139.0" fill="#000" font-size="15" dominant-baseline="middle">利润率</text>
+<line x1="41" y1="490" x2="177" y2="490" stroke="#262A4C" stroke-width="1.2"/>
+<line x1="229" y1="490" x2="365" y2="490" stroke="#262A4C" stroke-width="1.2"/>
+<line x1="418" y1="490" x2="554" y2="490" stroke="#262A4C" stroke-width="1.2"/>
+<line x1="606" y1="490" x2="741" y2="490" stroke="#262A4C" stroke-width="1.2"/>
+<line x1="87" y1="490" x2="129" y2="490" stroke="#0070C0" stroke-width="2"/>
+<line x1="276" y1="490" x2="318" y2="490" stroke="#0070C0" stroke-width="2"/>
+<line x1="464" y1="490" x2="506" y2="490" stroke="#0070C0" stroke-width="2"/>
+<line x1="652" y1="490" x2="694" y2="490" stroke="#0070C0" stroke-width="2"/>
+<rect x="86.0" y="250.00" width="42" height="240.00" fill="#0070C0"/>
+<text x="89.5" y="265.00" fill="#fff" font-size="13">2800</text>
+<rect x="275.0" y="270.23" width="42" height="219.77" fill="#0070C0"/>
+<text x="278.5" y="285.23" fill="#fff" font-size="13">2564</text>
+<rect x="463.0" y="294.40" width="42" height="195.60" fill="#0070C0"/>
+<text x="466.5" y="309.40" fill="#fff" font-size="13">2282</text>
+<rect x="651.0" y="288.31" width="42" height="201.69" fill="#0070C0"/>
+<text x="654.5" y="303.31" fill="#fff" font-size="13">2353</text>
+<path d="M133,206.87 L322,212.55 L510,227.15 L698,216.60" fill="none" stroke="#FFC000" stroke-width="2.4"/>
+<text x="133" y="194.87" fill="#fff" font-size="14" text-anchor="middle">68%</text>
+<text x="322" y="200.55" fill="#fff" font-size="14" text-anchor="middle">61%</text>
+<text x="510" y="215.15" fill="#fff" font-size="14" text-anchor="middle">43%</text>
+<text x="698" y="204.60" fill="#fff" font-size="14" text-anchor="middle">56%</text>
+<text x="107" y="516" fill="#E6E7EE" font-size="15" text-anchor="middle" dominant-baseline="middle">口红</text>
+<text x="296" y="516" fill="#E6E7EE" font-size="15" text-anchor="middle" dominant-baseline="middle">面膜</text>
+<text x="484" y="516" fill="#E6E7EE" font-size="15" text-anchor="middle" dominant-baseline="middle">隔离</text>
+<text x="672" y="516" fill="#E6E7EE" font-size="15" text-anchor="middle" dominant-baseline="middle">粉底液</text>
+<text x="63" y="562" fill="#B5B6BD" font-size="12" dominant-baseline="middle">*注：数据来源公司销售系统</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="739" height="635" viewBox="0 0 739 635" font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<defs><linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0070C0"/><stop offset="1" stop-color="#00B0F0"/></linearGradient></defs>
+<rect width="739" height="135" fill="#fff"/>
+<rect x="8.5" y="1.5" width="722" height="123" fill="none" stroke="#5B9BD5" stroke-width="1"/>
+<text x="22" y="27" font-size="17" fill="#1A1A1A" dominant-baseline="middle">部门</text>
+<line x1="36" y1="31" x2="724" y2="31" stroke="#5B9BD5" stroke-width="1"/>
+<rect x="7" y="135" width="728" height="495" fill="#1A1E43"/>
+<text x="48" y="201" font-size="25" font-weight="700" fill="#E8EAF6">各学历平均工资情况</text>
+<rect x="20" y="39" width="168" height="25" fill="#BDD7EE"/>
+<rect x="19" y="38" width="169" height="26" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+<text x="26" y="52.0" font-size="14.5" fill="#262626" dominant-baseline="middle">财务</text>
+<rect x="198" y="38" width="169" height="26" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+<text x="205" y="52.0" font-size="14.5" fill="#262626" dominant-baseline="middle">工程</text>
+<rect x="375" y="38" width="169" height="26" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+<text x="382" y="52.0" font-size="14.5" fill="#262626" dominant-baseline="middle">后勤</text>
+<rect x="553" y="38" width="169" height="26" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+<text x="560" y="52.0" font-size="14.5" fill="#262626" dominant-baseline="middle">人力资源</text>
+<rect x="19" y="69" width="169" height="26" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+<text x="26" y="83.0" font-size="14.5" fill="#262626" dominant-baseline="middle">市场拓展</text>
+<rect x="198" y="69" width="169" height="26" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+<text x="205" y="83.0" font-size="14.5" fill="#262626" dominant-baseline="middle">销售</text>
+<rect x="375" y="69" width="169" height="26" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+<text x="382" y="83.0" font-size="14.5" fill="#262626" dominant-baseline="middle">行政</text>
+<line x1="47" y1="275" x2="684" y2="275" stroke="#454866" stroke-width="1" stroke-dasharray="7 5"/>
+<line x1="47" y1="344" x2="684" y2="344" stroke="#454866" stroke-width="1" stroke-dasharray="7 5"/>
+<line x1="47" y1="413" x2="684" y2="413" stroke="#454866" stroke-width="1" stroke-dasharray="7 5"/>
+<line x1="47" y1="483" x2="684" y2="483" stroke="#454866" stroke-width="1" stroke-dasharray="7 5"/>
+<line x1="47" y1="552" x2="684" y2="552" stroke="#454866" stroke-width="1" stroke-dasharray="7 5"/>
+<line x1="47" y1="552" x2="684" y2="552" stroke="#454866" stroke-width="1"/>
+<rect x="96.0" y="389.96" width="40" height="162.04" fill="url(#barGrad)"/>
+<text x="116" y="380.96" font-size="13.5" fill="#F0F1F8" text-anchor="middle">6569.11</text>
+<rect x="221.0" y="445.51" width="40" height="106.49" fill="url(#barGrad)"/>
+<text x="241" y="436.51" font-size="13.5" fill="#F0F1F8" text-anchor="middle">4317.00</text>
+<rect x="346.0" y="462.85" width="40" height="89.15" fill="url(#barGrad)"/>
+<text x="366" y="453.85" font-size="13.5" fill="#F0F1F8" text-anchor="middle">3614.25</text>
+<rect x="474.0" y="369.15" width="40" height="182.85" fill="url(#barGrad)"/>
+<text x="494" y="360.15" font-size="13.5" fill="#F0F1F8" text-anchor="middle">7412.70</text>
+<rect x="600.0" y="466.47" width="40" height="85.53" fill="url(#barGrad)"/>
+<text x="620" y="457.47" font-size="13.5" fill="#F0F1F8" text-anchor="middle">3467.60</text>
+<text x="116" y="581" font-size="14.5" fill="#E2E4F0" text-anchor="middle">本科</text>
+<text x="241" y="581" font-size="14.5" fill="#E2E4F0" text-anchor="middle">博士</text>
+<text x="366" y="581" font-size="14.5" fill="#E2E4F0" text-anchor="middle">高中</text>
+<text x="494" y="581" font-size="14.5" fill="#E2E4F0" text-anchor="middle">硕士</text>
+<text x="620" y="581" font-size="14.5" fill="#E2E4F0" text-anchor="middle">专科</text>
+<text x="41" y="605" font-size="12.5" fill="#B9BDD4">*注：数据来源于人力资源管理系统，统计日期截至2022.03.31</text>
+</svg>

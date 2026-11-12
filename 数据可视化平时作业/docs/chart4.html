@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2022年化妆品销售情况</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#fff}
+  body{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;
+       font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Hiragino Sans GB",sans-serif}
+  .card{position:relative;width:830px;height:592px;background:#1A1E43;overflow:hidden;
+        box-shadow:0 12px 40px rgba(26,30,67,.18)}
+  .card svg{display:block;width:100%;height:100%}
+  .legend{cursor:pointer;outline:none}
+  .legend:hover .sw{filter:brightness(1.08)}
+  .legend:focus-visible .ring{stroke:#fff;stroke-width:2;stroke-dasharray:3 2}
+  .bar{transition:y .42s cubic-bezier(.3,0,.2,1),height .42s cubic-bezier(.3,0,.2,1)}
+  .lab,.pline{transition:transform .42s cubic-bezier(.3,0,.2,1),opacity .3s}
+  .hint{position:absolute;right:14px;bottom:10px;font-size:11px;color:#6F75A0;
+        opacity:0;transition:opacity .3s;pointer-events:none}
+  .card:hover .hint{opacity:1}
+</style>
+</head>
+<body>
+<div class="card">
+  <svg id="chart" viewBox="0 0 830 592" role="group" aria-label="2022年化妆品销售情况">
+    <rect width="830" height="592" fill="#1A1E43"/>
+    <text x="72" y="60" fill="#fff" font-size="33" font-weight="700"
+          dominant-baseline="middle">2022年化妆品销售情况</text>
+    <g id="legend"></g>
+    <g id="grid"></g>
+    <g id="bars"></g>
+    <g id="line"></g>
+    <g id="cats"></g>
+    <text x="63" y="562" fill="#B5B6BD" font-size="12" dominant-baseline="middle">*注：数据来源公司销售系统</text>
+  </svg>
+  <div class="hint">点击图例自由组合</div>
+</div>
+
+<script>
+const DATA = {"cats": ["口红", "面膜", "隔离", "粉底液"], "sales": [2800, 2564, 2282, 2353], "profit": [1896, 1563, 986, 1324], "rate": [68, 61, 43, 56], "legend": [{"key": "sales", "label": "销售额", "color": "#0070C0", "on": true}, {"key": "profit", "label": "利润额", "color": "#E74E69", "on": false}, {"key": "rate", "label": "利润率", "color": "#FFC000", "on": true}], "design": {"legY": 120, "legH": 36, "legW": 100, "legX": [102, 220, 356], "legTextDX": 36, "legBoxDX": 10, "legBoxSz": 16, "slotX": [107, 296, 484, 672], "baseY": 490, "catY": 516, "baseSegs": [[41, 177], [229, 365], [418, 554], [606, 741]], "barW": 42, "barW2": 21, "salesTop": 250.0, "profitTop": 331.0, "salesRef": 2800.0, "profitRef": 1896.0, "lineX": [133, 322, 510, 698], "rateY0": 202.0, "rateY1": 245.0, "rateMin": 21.0, "rateMax": 74.0}};
+const D = DATA.design;
+const NS = "http://www.w3.org/2000/svg";
+const mk = (t, a, txt) => {
+  const n = document.createElementNS(NS, t);
+  for (const k in a) n.setAttribute(k, a[k]);
+  if (txt != null) n.textContent = txt;
+  return n;
+};
+
+const legendG = document.getElementById("legend");
+const gridG   = document.getElementById("grid");
+const barsG   = document.getElementById("bars");
+const lineG   = document.getElementById("line");
+const catsG   = document.getElementById("cats");
+
+let active = new Set(DATA.legend.filter(g => g.on).map(g => g.key));
+
+/* ---------- 数值 → 坐标 ---------- */
+function barTop(key, i){
+  const ref = key === "sales" ? D.salesRef : D.profitRef;
+  const top = key === "sales" ? D.salesTop : D.profitTop;
+  const v   = key === "sales" ? DATA.sales[i] : DATA.profit[i];
+  return top + (D.baseY - top) * (1 - v / ref);
+}
+function rateY(v){
+  return D.rateY0 + (D.rateY1 - D.rateY0) * (D.rateMax - v) / (D.rateMax - D.rateMin);
+}
+function barLayout(s, p){
+  if (s && p) return [["sales", -D.barW2 - 1, "#0070C0", D.barW2],
+                      ["profit", 1, "#E74E69", D.barW2]];
+  if (s) return [["sales", -D.barW / 2, "#0070C0", D.barW]];
+  if (p) return [["profit", -D.barW / 2, "#E74E69", D.barW]];
+  return [];
+}
+
+/* ---------- 图例 ---------- */
+DATA.legend.forEach((g, i) => {
+  const bx = D.legX[i], by = D.legY;
+  const grp = mk("g", {"class":"legend", "data-key":g.key, tabindex:"0",
+                       role:"checkbox", "aria-checked": g.on ? "true":"false",
+                       "aria-label": g.label});
+  grp.appendChild(mk("rect", {"class":"sw", x:bx, y:by, width:D.legW, height:D.legH,
+                              fill:g.color, rx:0}));
+  const cx = bx + D.legBoxDX, cy = by + (D.legH - D.legBoxSz) / 2;
+  grp.appendChild(mk("rect", {"class":"ring", x:cx, y:cy, width:D.legBoxSz,
+                              height:D.legBoxSz, fill:"#fff", stroke:"#000",
+                              "stroke-width":"1.5"}));
+  grp.appendChild(mk("path", {
+    "class":"tick",
+    d:`M${cx+3.4},${cy+8.2} L${cx+6.6},${cy+12} L${cx+12.8},${cy+3.4}`,
+    fill:"none", stroke:"#000", "stroke-width":"2.6",
+    "stroke-linecap":"butt", "stroke-linejoin":"miter",
+    opacity: g.on ? 1 : 0
+  }));
+  grp.appendChild(mk("text", {x:bx + D.legTextDX, y:by + D.legH/2 + 1, fill:"#000",
+                              "font-size":"15", "dominant-baseline":"middle",
+                              "pointer-events":"none"}, g.label));
+  const toggle = () => {
+    const k = g.key;
+    if (active.has(k) && active.size === 1) return;   /* 至少保留一项 */
+    active.has(k) ? active.delete(k) : active.add(k);
+    render();
+  };
+  grp.addEventListener("click", toggle);
+  grp.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+  });
+  legendG.appendChild(grp);
+});
+
+/* ---------- 静态层 ---------- */
+catsG.innerHTML = "";
+DATA.cats.forEach((name, i) => {
+  catsG.appendChild(mk("text", {x:D.slotX[i], y:D.catY, fill:"#E6E7EE",
+                                "font-size":"15", "text-anchor":"middle",
+                                "dominant-baseline":"middle"}, name));
+});
+
+/* ---------- 渲染 ---------- */
+function render(){
+  const s = active.has("sales"), p = active.has("profit"), r = active.has("rate");
+
+  legendG.querySelectorAll(".legend").forEach(g => {
+    const on = active.has(g.dataset.key);
+    g.setAttribute("aria-checked", on ? "true" : "false");
+    g.querySelector(".tick").setAttribute("opacity", on ? 1 : 0);
+  });
+
+  /* 基线 + 分组短线 */
+  gridG.innerHTML = "";
+  D.baseSegs.forEach(([x0, x1]) => {
+    gridG.appendChild(mk("line", {x1:x0, y1:D.baseY, x2:x1, y2:D.baseY,
+                                  stroke:"#262A4C", "stroke-width":"1.2"}));
+  });
+  D.slotX.forEach(cx => {
+    if (s) gridG.appendChild(mk("line", {x1:cx-20, y1:D.baseY, x2:cx+22, y2:D.baseY,
+                                         stroke:"#0070C0", "stroke-width":"2"}));
+    if (p) gridG.appendChild(mk("line", {x1:cx-6, y1:D.baseY, x2:cx+36, y2:D.baseY,
+                                         stroke:"#E74E69", "stroke-width":"2"}));
+  });
+
+  /* 柱子 */
+  barsG.innerHTML = "";
+  const layout = barLayout(s, p);
+  if (layout.length){
+    DATA.cats.forEach((_, i) => {
+      const cx = D.slotX[i];
+      layout.forEach(([key, off, color, bw]) => {
+        const x0 = cx + off, top = barTop(key, i);
+        barsG.appendChild(mk("rect", {"class":"bar", x:x0, y:top, width:bw,
+                                      height:D.baseY - top, fill:color}));
+        const val = key === "sales" ? DATA.sales[i] : DATA.profit[i];
+        barsG.appendChild(mk("text", {"class":"lab", x:x0 + 3.5, y:top + 15,
+                                      fill:"#fff", "font-size":"13"}, String(val)));
+      });
+    });
+  }
+
+  /* 利润率折线 */
+  lineG.innerHTML = "";
+  if (r){
+    const xs = D.lineX, ys = DATA.rate.map(rateY);
+    const d = xs.map((x, i) => `${i ? "L" : "M"}${x},${ys[i].toFixed(2)}`).join(" ");
+    lineG.appendChild(mk("path", {d:d, fill:"none", stroke:"#FFC000",
+                                  "stroke-width":"2.4", "stroke-linejoin":"miter"}));
+    xs.forEach((x, i) => {
+      lineG.appendChild(mk("text", {"class":"pline", x:x, y:ys[i] - 12, fill:"#fff",
+                                    "font-size":"14", "text-anchor":"middle"},
+                           DATA.rate[i] + "%"));
+    });
+  }
+
+  /* 淡入 */
+  [barsG, lineG].forEach(g => { g.style.opacity = .35; });
+  requestAnimationFrame(() => {
+    [barsG, lineG].forEach(g => { g.style.opacity = 1; });
+  });
+}
+
+render();
+</script>
+</body>
+</html>

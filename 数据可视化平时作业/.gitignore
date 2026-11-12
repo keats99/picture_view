@@ -1,0 +1,11 @@
+# 忽略 PyCharm 的个人配置文件夹
+.idea/
+
+# 忽略 Python 运行产生的缓存
+__pycache__/
+
+# 忽略 Jupyter Notebook 的检查点
+.ipynb_checkpoints/
+
+# 忽略系统自带的垃圾文件
+.DS_Store
